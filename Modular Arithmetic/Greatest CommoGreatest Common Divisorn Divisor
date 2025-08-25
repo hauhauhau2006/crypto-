@@ -1,0 +1,3 @@
+import math 
+math.gcd(66528,52920)
+1512
