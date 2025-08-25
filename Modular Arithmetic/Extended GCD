@@ -1,0 +1,8 @@
+def e(a, b):
+    if b == 0:
+        return 1, 0, a
+    x, y, g = e(b, a % b) // g bài này bằng 1 do 2 số đều là snt
+    return y, x - (a // b) * y, g  // biến đổi công thức có
+
+u, v, g = e(26513,32321)
+print(u, v, g)
