@@ -1,0 +1,10 @@
+result = []
+    for a in range(29) :
+        if pow(x,14,29) == 28://tìm ra 2 so khong phải la thang du bac 2
+               result.append(a)
+print(result)// tim duoc 6 là hop le sau do code doan duoi
+kq = []
+    for b in range(29) :
+        if b*b % 29 == 6:
+            kq.append(b)
+print(kq)// ra 2 nghiem , lay nghiem be nhat la 8 này đúng không
