@@ -1,0 +1,14 @@
+>>> def bytes2matrix(text):
+...     return [ list(text[ i : i+4] for i in range(0,len(text),4))]
+...
+>>> def matrix2bytes(matrix):
+...     return bytes(sum(matrix, []))
+...
+>>> matrix = [
+...     [251, 64, 182, 81],
+...     [146, 168, 33, 80],
+...     [199, 159, 195, 24],
+...     [64, 80, 182, 255],
+... ]
+>>> print(matrix2bytes(matrix))
+b'\xfb@\xb6Q\x92\xa8!P\xc7\x9f\xc3\x18@P\xb6\xff'// kết quả ra 
