@@ -1,0 +1,7 @@
+sage: z9739 = Zmod(9739)
+sage: e = EllipticCurve(z9739, [497,1768])
+sage: p = e([493,5564])
+sage: q = e([1539,4742])
+sage: r = e([4403,5202])
+sage: print(p+p+q+r)
+(4215 : 2162 : 1)
