@@ -1,0 +1,10 @@
+sage: import hashlib
+sage:  p = 9739
+sage:  e = EllipticCurve(GF(p) , [497,1768])
+sage:  g = e([1804,5368])
+sage: n = 1829
+sage:  q = e([815,3190])
+sage: S = q*n
+sage: x = int(S[0])
+sage: k = hashlib.sha1(str(x).encode()).hexdigest()
+sage: print(k)
