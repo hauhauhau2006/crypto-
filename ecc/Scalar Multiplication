@@ -1,0 +1,6 @@
+p = 9739
+e = EllipticCurve(GF(p), [497,1768])//GF dùng với số nt
+t = e([2339,2213])
+k = 7863
+x = k*t
+ptint(x)
