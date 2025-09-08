@@ -7,3 +7,4 @@ sage: q = e([4726,6287])
 sage: k = 6534 * q
 sage: print(k)
 (1791 : 2181 : 1)
+tim duoc x thay vao file r chay
