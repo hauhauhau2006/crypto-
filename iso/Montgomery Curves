@@ -1,0 +1,18 @@
+// tìm điểm alpha chuyển về (thường là dạng alpha,0)
+// đặt X = u*x,Y= v*y
+// sau đó tính đươc A dang (3*alpha)/sqrt(3*alpha**2 + a)
+p = 1912812599
+a = 312589632
+b= 654443578
+F = GF(p)
+S.<x> = polynomiaRing(F)
+f = x**3 +a*x+b
+roots = f.roots()
+roots
+alpha = roots[0][0]// lấy nghiệm
+k = 3*alpha
+t = (3*alpha*alpha + a).sqrt()// công thức
+a = k * t^-1
+print(int(a))
+
+
