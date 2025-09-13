@@ -1,0 +1,7 @@
+Type "help", "copyright", "credits" or "license" for more information.
+>>> t = (13819-27709)%63079
+>>> z = (9460-48622)%63079
+>>> k = t * pow(z,-1,63079)%63079
+>>> x = (k*k - 9460-48622)%63079
+>>> print(x)
+37097
