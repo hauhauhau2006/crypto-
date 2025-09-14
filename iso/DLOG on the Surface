@@ -1,0 +1,50 @@
+sage: from Crypto.Util.number import*
+sage: from pwn import *
+sage: from tqdm import tqdm
+sage: from gmpy2 import *
+sage: from Crypto.PublicKey import ECC
+sage: from Crypto.Cipher import AES
+sage: from Crypto.Hash import SHA256
+sage: iv = bytes.fromhex('6f5a901b9dc00aded4add3791812883b')
+sage: ct = bytes.fromhex('56ecb68a90cad9787a24a4511720d40d625901577f6d0f1eef9fc3
+....: 4cf042709110cdc061fff91e934877674a30ed911283b83927dbcc270ae358d6b1fe2d5bed
+....: 18ce1b02d8805de55e5b36deb0d28883')
+sage: def decrypt_flag(a,b,c,d,iv,ct):
+....:     data_abcd = str(a)+str(b)+str(c)+str(d)
+....:     key = SHA256.new(data=data_abcd.encode()).digest()[:128]
+....:     cipher = AES.new(key,AES.MODE_CBC,iv)
+....:     flag = cipher.decrypt(ct)
+....:     return flag
+....:
+sage: from sage.all import *
+sage: p = 2**127 - 1
+sage: F.<i> = GF(p**2 , modulus = [1,0,1])
+sage: E = EllipticCurve(F,[1,0])
+sage: P,Q = E.gens()
+sage: P =E((24722427318870186874942502106037863239*i + 6222342235556263102173259
+....: 7235582046928,
+....:        66881667812593541117238448140445071224*i + 149178354082347398743922
+....: 440593055790802))
+sage: Q = E((136066972787979381470429160016223396048*i + 52082760150043245190232
+....: 762320312239515,
+....:        37290474751398918861353632929218878189*i + 897774361051669478426608
+....: 22806860901885))
+sage: R = E((115434063687215369570994517493754451626*i + 15887401859695892213358
+....: 9852067300239562,
+....:        62259011436032820287439957155108559928*i + 812533182005576944691686
+....: 38082106161224))
+sage: S=E((42595488035799156418773068781330714859*i + 11304934237664764900699091
+....: 2915011269440,
+....:        25404988689109287499485677343768857329*i + 125117346805247292256813
+....: 555413193592812))
+....:
+sage: n = p+1
+sage: assert n == P.order() == Q.order()
+sage: e = P.weil_pairing(Q,n)
+sage: a = R.weil_pairing(Q,n).log(e) % n
+sage: b = -R.weil_pairing(P,n).log(e) % n
+sage: c = S.weil_pairing(Q,n).log(e) % n
+sage: d = -S.weil_pairing(P,n).log(e) % n
+sage: flag = decrypt_flag(a,b,c,d,iv,ct)
+sage: print(flag)
+b'crypto{now_try_writing_a_function_for_fast_torsion_basis_generation!}\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b'
