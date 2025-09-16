@@ -1,0 +1,10 @@
+from factordb.factordb import FactorDB
+from Crypto.Util.number import *
+n = 984994081290620368062168960884976209711107645166770780785733
+e  = 65537
+ct = 948553474947320504624302879933619818331484350431616834086273
+k = FactorDB(n)
+k.connect()
+list = k.get_factor_list()
+phi = (list[0]-1)*(list[1] -1)
+print(long_to_bytes(pow(ct, pow(e,-1,phi),n)).decode())
