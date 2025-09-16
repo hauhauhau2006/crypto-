@@ -1,0 +1,5 @@
+from factordb.factordb import FactorDB
+N = 510143758735509025530880200653196460532653147
+k = FactorDB(N)
+k.connect()
+print(min(k.get_factor_list()))
