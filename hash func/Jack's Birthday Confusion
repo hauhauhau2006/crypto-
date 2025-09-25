@@ -1,3 +1,4 @@
 import math
 x = math.sqrt(2*2**11*(math.log(4)))
 print(x)
+// 1-0,75 = e mũ(-n*(n-1)/2*2**11)
