@@ -1,0 +1,11 @@
+import jwt
+encode_jwt=jwt.encode({"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9":"eyJmbGFnIjoiY3J5cHRve2p3dF9jb250ZW50c19jYW5fYmVfZWFzaWx5X3ZpZXdlZH0iLCJ1c2VyIjoiQ3J5cHRvIE1jSGFjayIsImV4cCI6MjAwNTAzMzQ5M30"}, "shKSmZfgGVvd2OSB2CGezzJ3N6WAULo3w9zCl_T47KQ", algorithm="HS256")
+jwt.decode(encode_jwt,"shKSmZfgGVvd2OSB2CGezzJ3N6WAULo3w9zCl_T47KQ" , algorithms=["HS256"])
+#ra some and payload, lấy t = payload
+t = 'eyJmbGFnIjoiY3J5cHRve2p3dF9jb250ZW50c19jYW5fYmVfZWFzaWx5X3ZpZXdlZH0iLCJ1c2VyIjoiQ3J5cHRvIE1jSGFjayIsImV4cCI6MjAwNTAzMzQ5M30'
+import base64
+t_pad = t+ '='*(-len(t)%4)
+k = base64.urlsafe_b64decode(t_pad)
+h = k.decode('utf-8')
+  print(h)
+  
