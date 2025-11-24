@@ -1,0 +1,13 @@
+sage math : GF(28151).primitive_element()
+python:
+from sympy import factorint
+p = 28151
+z = p-1
+factor = factorint(z).keys()
+def is_primitive(g):
+    return all(pow(g,z//q,p) != 1 for q in factor)
+
+for g in range(2,p):
+    if is_primitive(g):
+        print(g)
+        break
