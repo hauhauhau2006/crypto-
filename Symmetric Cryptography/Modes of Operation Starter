@@ -1,0 +1,14 @@
+from Crypto.Util.number import*
+import requests
+url = "http://aes.cryptohack.org/block_cipher_starter/"
+def decrypt(ciphertext):
+    r = requests.get(url + "decrypt/" + ciphertext + "/")
+    return r.json()['plaintext']
+
+def encrypt_flag():
+    r = requests.get(url + "encrypt_flag/")
+    return r.json()['ciphertext']
+
+cipher = encrypt_flag()
+plain_hex = decrypt(cipher)
+print(long_to_bytes(int(plain_hex, 16)))
