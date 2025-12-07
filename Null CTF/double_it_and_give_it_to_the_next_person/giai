@@ -1,0 +1,14 @@
+#ECC
+công thức
+y2=x3+ax+b
+Qx​+2Px​)⋅4(Px3​+aPx​+b)=(3Px2​+a)2
+Px​=Ai​⋅key1+Bi​,Qx​=Ci​⋅key2+Di​
+2 vòng lặp
+P1.x = A1*key1 + B1
+Q1.x = C1*key2 + D1
+
+P2.x = A2*key1 + B2
+Q2.x = C2*key2 + D2
+
+flag xor giữa 2 key
+https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Point_doubling
