@@ -1,0 +1,42 @@
+#sage
+p = 2^256 - 2^224 + 2^192 + 2^96 - 1
+curve_a = -3
+curve_b = 0x5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b
+
+a1 = 101391067652419278504279072061964396163420598174591672104811496061093042423713
+b1 = 110183945624921546387413554986656742713737778649772602611818367446708850272293
+c1 = 43935985468030112938420167350551592897480789520688041577831275174910738854569
+d1 = 13245902077735905939963311540878792271896625592735457462639747889134751588655
+
+a2 = 113113920295449343615508981422751944711310245958533784150505930220126533492423
+b2 = 3292039546575820821367398987680176504505470559384412397685623175088154966631
+c2 = 90189751456536603500768763858048652235807590023038279530146107092251468907921
+d2 = 93980984745553841375952018332854663310402153214300203815947697055365029221289
+
+R.<key1, key2> = PolynomialRing(GF(p), order='lex')
+
+def constraint(ai, bi, ci, di):
+    Px = ai * key1 + bi
+    Qx = ci * key2 + di
+    return (Qx + 2*Px) * 4 * (Px^3 + curve_a*Px + curve_b) - (3*Px^2 + curve_a)^2
+I = ideal(constraint(a1,b1,c1,d1), constraint(a2,b2,c2,d2))
+G = I.groebner_basis()
+for g in G:
+    if g.degree(key1) == 0:
+        print(f"Found univariate in key2, degree {g.degree(key2)}")
+
+        S.<x> = PolynomialRing(GF(p))
+        uni = S(g.subs(key2=x))
+        roots = uni.roots()
+        print(f"Found {len(roots)} root(s)")
+
+        for r, mult in roots:
+            k2 = int(r)
+           
+            for g2 in G:
+                if g2.degree(key1) == 1:
+                    eq = g2.subs(key2=k2)
+                    k1 = int(-eq.constant_coefficient() / eq.coefficient(key1))
+                    print(f"\nFLAG: null{{{k1 ^^ k2:064x}}}")
+                    break
+        break
