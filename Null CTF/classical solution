@@ -1,0 +1,15 @@
+Z65537​=GF(65537)
+
+M⋅x=b(mod65537)
+M : ma trận cho trước
+x : flag
+b : result
+
+Nếu M khả nghịch
+x=M−1⋅b(mod65537)
+
+Giải:
+M−1=M.inv_mod(65537)
+Nhân nghịch đảo với vector result.
+Lấy mod 65537.
+--> flag
